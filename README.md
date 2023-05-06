@@ -2,7 +2,7 @@
 
 #### Name: 許軒祥
 #### Student ID: 111753122
-#### ShinyApps link: [<https://yourname.shinyapps.io/NCCU_DS2023_hw4_studentID/>]
+#### ShinyApps link: https://johnccc.shinyapps.io/NCCU_DS2023_hw4_111753122/
 
 ## Description
 
