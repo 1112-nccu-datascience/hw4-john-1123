@@ -8,7 +8,7 @@ library(DT)
 # Define UI
 ui <- fluidPage(
   navbarPage(
-    "111753122 HW4",
+    "HW4 CS 111753122 john-1123",
     tabPanel(
       title = "Dataset",
       titlePanel("Iris Dataset"),
@@ -21,9 +21,9 @@ ui <- fluidPage(
         sidebarPanel(
           sliderInput("rangePCA", "Range of Input Data", min = 1, max = 150, value = c(1, 150)),
           selectInput("x", "Choose X axis of PCA",
-                      c("PC1" = 1, "PC2" = 2, "PC3" = 3, "PC4" = 4), selected = 1),
+                      c("PC1" = 1, "PC3" = 3, "PC4" = 4), selected = 1),
           selectInput("y", "Choose Y axis of PCA",
-                      c("PC1" = 1, "PC2" = 2, "PC3" = 3, "PC4" = 4), selected = 2),
+                      c("PC2" = 2, "PC3" = 3, "PC4" = 4), selected = 2),
         ),
         mainPanel(
           tabsetPanel(
@@ -60,12 +60,21 @@ ui <- fluidPage(
   )
 )
 # Define server
-server <- function(input, output) {
+server <- function(input, output, session) {
   # Data
   data(iris)
   log.ir <- reactive(log(iris[input$rangePCA[1]:input$rangePCA[2], 1:4]))
   ir.species <- reactive(iris[input$rangePCA[1]:input$rangePCA[2], 5])
 
+  observe({
+    updateSelectInput(session, "x", 
+                      choices = setNames(setdiff(1:4, input$y), paste0("PC", setdiff(1:4, input$y))), 
+                      selected = input$x)
+    updateSelectInput(session, "y", 
+                      choices = setNames(setdiff(1:4, input$x), paste0("PC", setdiff(1:4, input$x))), 
+                      selected = input$y)
+  })
+  
   # PCA
   ir.pca <- reactive(prcomp(log.ir(), center = TRUE, scale. = TRUE))
   output$pcaPlot <- renderPlot({

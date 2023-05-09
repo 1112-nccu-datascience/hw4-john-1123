@@ -5,9 +5,9 @@ account: johnccc
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 9042722
-bundleId: 7181696
+bundleId: 7194266
 url: https://johnccc.shinyapps.io/NCCU_DS2023_hw4_111753122/
-when: 1683364002.19158
-lastSyncTime: 1683364002.1916
+when: 1683639418.26442
+lastSyncTime: 1683639418.26443
 asMultiple: FALSE
 asStatic: FALSE
